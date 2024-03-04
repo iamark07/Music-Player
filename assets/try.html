@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Song Player</title>
+</head>
+
+<body>
+    <audio controls id="myAudio" src="/assets/audio/Akhiyaan Gulaab Audio Shahid Kapoor Kriti Sanon  Mitraz  Teri Baaton Mein Aisa Uljha Jiya.mp3" onloadedmetadata="displayDuration()">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <p id="duration"></p>
+      
+      <script>
+      function displayDuration() {
+        var audio = document.getElementById("myAudio");
+        var durationElement = document.getElementById("duration");
+        durationElement.textContent = "Duration: " + audio.duration + " seconds";
+      }
+      </script>
+</body>
+<!-- <body>
+    <audio controls id="myAudio" src="/assets/audio/Akhiyaan Gulaab Audio Shahid Kapoor Kriti Sanon  Mitraz  Teri Baaton Mein Aisa Uljha Jiya.mp3" onloadedmetadata="audioLoaded()">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <script>
+      function audioLoaded() {
+        var audio = document.getElementById("myAudio");
+        console.log("Audio duration:", audio.duration);
+        // Perform other actions...
+      }
+      </script>
+</body> -->
+<!-- <body>
+
+<audio id="myAudio" controls>
+    <source src="audio/Dunki Drop 5  O Maahi Song Shah Rukh Khan  Taapsee Pannu  Pritam  Arijit Singh  Irshad Kamil  YouTube.mp3" type="audio/mpeg">
+</audio>
+
+<p id="audioName">Song Name</p>
+
+<script>
+    
+        const audio = document.getElementById('myAudio');
+        const audioSrc = audio.getElementsByTagName('source')[0].src;
+        const audioName = decodeURIComponent(audioSrc.split('/').pop()); // Decode URL-encoded characters
+        const pTag = document.getElementById('audioName');
+        pTag.textContent = audioName; // Set the text content of the <p> tag to the audio file name
+    
+</script>
+
+</body> -->
+</html>
