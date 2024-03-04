@@ -41,7 +41,7 @@ $(document).ready(() => {
         const play_wave_icon = $(".play_wave_icon");
         const creat_music_wave_img = $("<img>");
         play_wave_icon.append(creat_music_wave_img);
-        $(".current_song_list .song_name .play_wave_icon img").attr("src", "/assets/img/music wave.gif");
+        $(".current_song_list .song_name .play_wave_icon img").attr("src", "assets/img/music wave.gif");
     };
 
     // remove wave img tag
@@ -105,14 +105,14 @@ $(document).ready(() => {
     function play_music_action() {
         $(".play_btn").addClass("hide_play_btn");
         $(".pause_btn").addClass("show_pause_btn");
-        $(".current_song_list .song_name .play_wave_icon img").attr("src", "/assets/img/music wave.gif");
+        $(".current_song_list .song_name .play_wave_icon img").attr("src", "assets/img/music wave.gif");
         $(".cd_player img").addClass("play_cd");
     }
 
     function stop_music_action() {
         $(".play_btn").removeClass("hide_play_btn");
         $(".pause_btn").removeClass("show_pause_btn");
-        $(".current_song_list .song_name .play_wave_icon img").attr("src", "/assets/img/stop music wave.jpg");
+        $(".current_song_list .song_name .play_wave_icon img").attr("src", "assets/img/stop music wave.jpg");
         $(".cd_player img").removeClass("play_cd");
     }
 
