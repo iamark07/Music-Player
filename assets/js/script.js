@@ -250,31 +250,43 @@ $(document).ready(() => {
             if ($(".song:last").hasClass("stop_song")) { // check if last song have class stop_song name then 
                 $(".song:last").removeClass("stop_song"); // remove stop_song from last song
                 $(".song:first").addClass("current_song_list"); // add current_song_list class on first song
+                $(".current_song_time").text("00:00");
+                $(".progress").css("left", "0%");
+                let pop_song_name = $(".current_song_list .song_name .audio_name").text(); // pop up song name select
+                $(".pop_cur_song_name").text(pop_song_name); // copy to popup current song
+                let cur_song_name = $(".pop_cur_song_name").text(); //  select current popup song
+                $(".cur_song_name").text(cur_song_name); // copy to popup song name
+                delWaveIcon();// delete music wave gif img
+                creat_wave_icon();// add music wave gif img
+                stop_music_action();
+                
+            }
+            else {
+                let prev = $(".current_song_list").prev(); // select current_song_list previous song
+                prev.removeClass("stop_song"); // remove stop_song class on current_song_list privious song
+                let next_cur_song = $(".current_song_list .song_name .audio")[0]; // select current song
+
+                $(".audio").each(function () {
+                    if (!this.paused) { // check which song who am i select is play then
+                        this.pause(); // current song paused
+                        this.currentTime = 0; //and set song current time to 0
+                    }
+                });
+                next_cur_song.play(); // current song play
+                let pop_song_name = $(".current_song_list .song_name .audio_name").text(); // pop up song name select
+                $(".pop_cur_song_name").text(pop_song_name); // copy to popup current song
+                let cur_song_name = $(".pop_cur_song_name").text(); //  select current popup song
+                $(".cur_song_name").text(cur_song_name); // copy to popup song name
+                delWaveIcon();// delete music wave gif img
+                creat_wave_icon();// add music wave gif img
+                song_end();
+                updateCurrentTime();
+                music_duration(); // music duration show
+                play_music_action(); // other music action cd animation play pause btn show hide
+                progress(); // progess moving automatic with the song duration 
+                progress_bar_point(); // on progress bar where click song playing there
             }
 
-            let prev = $(".current_song_list").prev(); // select current_song_list previous song
-            prev.removeClass("stop_song"); // remove stop_song class on current_song_list privious song
-            let next_cur_song = $(".current_song_list .song_name .audio")[0]; // select current song
-
-            $(".audio").each(function () {
-                if (!this.paused) { // check which song who am i select is play then
-                    this.pause(); // current song paused
-                    this.currentTime = 0; //and set song current time to 0
-                }
-            });
-            next_cur_song.play(); // current song play
-            let pop_song_name = $(".current_song_list .song_name .audio_name").text(); // pop up song name select
-            $(".pop_cur_song_name").text(pop_song_name); // copy to popup current song
-            let cur_song_name = $(".pop_cur_song_name").text(); //  select current popup song
-            $(".cur_song_name").text(cur_song_name); // copy to popup song name
-            delWaveIcon();// delete music wave gif img
-            creat_wave_icon();// add music wave gif img
-            song_end();
-            updateCurrentTime();
-            music_duration(); // music duration show
-            play_music_action(); // other music action cd animation play pause btn show hide
-            progress(); // progess moving automatic with the song duration 
-            progress_bar_point(); // on progress bar where click song playing there
         });
     }
 
