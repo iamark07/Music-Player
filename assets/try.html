@@ -1,56 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Song Player</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fjalla+One&family=Great+Vibes&family=Lobster+Two&family=Mooli&family=PT+Sans+Narrow&family=Pacifico&family=Poppins:wght@300&family=Rajdhani:wght@600&family=Roboto:wght@300&family=Teko&display=swap"
+        rel="stylesheet">
+
+    <!-- font awesome cdn link -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- rimix icon link -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- css link -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <title>Ark Music</title>
 </head>
 
 <body>
-    <audio controls id="myAudio" src="/assets/audio/Akhiyaan Gulaab Audio Shahid Kapoor Kriti Sanon  Mitraz  Teri Baaton Mein Aisa Uljha Jiya.mp3" onloadedmetadata="displayDuration()">
-        Your browser does not support the audio element.
-      </audio>
-      
-      <p id="duration"></p>
-      
-      <script>
-      function displayDuration() {
-        var audio = document.getElementById("myAudio");
-        var durationElement = document.getElementById("duration");
-        durationElement.textContent = "Duration: " + audio.duration + " seconds";
-      }
-      </script>
+    <main>
+        <!-- 
+            1. home = fav, playlist, recent, profile, all song, small popup music
+            2. current music popup, music controler, playlist icon
+          -->
+
+        <!-- music player -->
+
+        <!-- music plyaer container -->
+
+        <div class="music_container">
+            <div class="music_wrapper">
+                <div class="header_icons">
+                    <div class="search_icon">
+                        <i class="ri-search-eye-line search"></i>
+                        <!-- search box -->
+                        <div class="search_input_container">
+                            <form action="">
+                                <div class="search_input">
+                                    <input type="text" class="search_input_box" placeholder="Search Song">
+                                    <i class="ri-close-line empty_search_icon"></i>
+                                </div>
+                            </form>
+                            <i class="ri-close-line close_search_icon"></i>
+                        </div>
+                    </div>
+                    <div class="profile_icons">
+                        <i class="ri-user-line"></i>
+                    </div>
+                </div>
+                <div class="header_heading">
+                    <h1>Ark Music</h1>
+                </div>
+                <div class="music_list_container">
+                    <div class="shot_music fav_list_container">
+                        <div class="fav_music">
+                            <i class="ri-heart-fill"></i>
+                            <p>Favorites</p>
+                        </div>
+                    </div>
+                    <div class="shot_music recent_list_container">
+                        <div class="recent">
+                            <i class="ri-time-fill"></i>
+                            <p>Recent</p>
+                        </div>
+                    </div>
+                    <div class="shot_music playlist_list_container">
+                        <div class="playlist_music">
+                            <i class="ri-disc-fill"></i>
+                            <p>Playlist</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="all_music">
+                    <h4>All Music</h4>
+                </div>
+                <div class="song_list_container">
+                    <div class="song_list_wrapper">
+                        <ul>
+                            <li class="song current_song_list">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source
+                                        src="audio/Dunki Drop 5  O Maahi Song Shah Rukh Khan  Taapsee Pannu  Pritam  Arijit Singh  Irshad Kamil  YouTube.mp3"
+                                        type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                        <img src="/assets/img/stop music wave.jpg" alt="">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source
+                                        src="audio/Lutt Putt Gaya LYRICS  Arijit Singh  Dunki  Shah Rukh KhanTaapsee  Rajkumar Hirani Pritam  YouTube.mp3"
+                                        type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source
+                                        src="audio/Akhiyaan Gulaab Audio Shahid Kapoor Kriti Sanon  Mitraz  Teri Baaton Mein Aisa Uljha Jiya.mp3"
+                                        type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source src="audio/bloody mary instrumental only best part looped  YouTube.mp3"
+                                        type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source
+                                        src="audio/Dard Official Video  Kushagra  Showkidd  Sanya Jain  EP  Love19  UR Debut  YouTube.mp3"
+                                        type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source
+                                        src="audio/Dunki Chal Ve WatnaAudio Shah Rukh Khan Rajkumar Hirani Taapsee Pannu PritamJaved AliVarun G  YouTube.mp3"
+                                        type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source
+                                        src="audio/Dunki Drop 3 Nikle The Kabhi Hum Ghar Se  Shah Rukh Khan  Rajkumar Hirani  PritamSonu NJaved A  YouTube.mp3"
+                                        type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source
+                                        src="audio/Main Tera Rasta Dekhunga Lyrical Shah Rukh Khan Rajkumar H Taapsee PritamShadabAltamashDunki.mp3"
+                                        type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source src="audio/MITRAZ  Akhiyaan Official Audio  YouTube.mp3" type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source
+                                        src="audio/Raat Akeli Thi Lyrical Merry ChristmasKatrina Kaif Vijay Sethupathi Pritam Arijit AntaraVarun.mp3"
+                                        type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source
+                                        src="audio/Teri Baaton Mein Aisa Uljha Jiya Title Track Shahid Kapoor Kriti Sanon  RaghavTanishk Asees.mp3"
+                                        type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source
+                                        src="audio/Tum Se Lyrics Shahid Kapoor Kriti Sanon  SachinJigar Raghav Chaitanya Varun Jain Indraneel.mp3"
+                                        type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source src="audio/Video Not Available  YouTube.mp3" type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="song">
+                                <div class="song_name">
+                                    <audio class="audio" /*controls* />
+                                    <source src="audio/VØJ Narvent  Memory Reboot 4K Music Video  YouTube.mp3"
+                                        type="audio/mpeg">
+                                    </audio>
+                                    <h4 class="audio_name"></h4>
+                                    <div class="play_wave_icon">
+                                    </div>
+                                    <div class="song_option_icon">
+                                        <i class="ri-more-2-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="popup_cur_music_container">
+                <div class="popup_cur_music">
+                    <div class="pop_music_icon">
+                        <i class="ri-music-fill"></i>
+                    </div>
+                    <div class="popup_song_name">
+                        <marquee behavior="" direction="" scrollamount="2.8">
+                            <h6 class="pop_cur_song_name"></h6>
+                        </marquee>
+                    </div>
+                    <div class="popup_music_nav">
+                        <div class="mus_btn popup_backward_btn_icon left_arrow">
+                            <i class="ri-skip-back-mini-fill"></i>
+                        </div>
+                        <div class="mus_btn popup_play_btn_icon play_btn">
+                            <i class="ri-play-fill"></i>
+                        </div>
+                        <div class="mus_btn popup_pause_btn_icon pause_btn">
+                            <i class="ri-pause-fill"></i>
+                        </div>
+                        <div class="mus_btn popup_forward_btn_icon right_arrow">
+                            <i class="ri-skip-forward-mini-fill"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="current_music_container">
+                    <div class="current_music_wrapper">
+                        <div class="options_icons">
+                            <div class="close_cur_music">
+                                <i class="ri-skip-down-line swipe_down_music"></i>
+                            </div>
+                            <div class="cur_music_option">
+                                <i class="ri-more-2-line"></i>
+                            </div>
+                        </div>
+                        <div class="cd_player">
+                            <img src="/assets/img/cd_player.png" alt="">
+                        </div>
+                        <div class="cur_song">
+                            <marquee behavior="" direction="" scrollamount="3">
+                                <h3 class="cur_song_name"></h3>
+                            </marquee>
+                            <div class="cur_fav_music">
+                                <i class="ri-heart-fill"></i>
+                            </div>
+                        </div>
+                        <audio /*controls*/ src="">
+                        </audio>
+                        <div class="audio_range">
+                            <p class="current_song_time time">00:00</p>
+                            <!-- <input type="range" class="song_range"> -->
+                            <div class="progress_song_box">
+                                <div class="progress"></div>
+                                <span class="progress_play"></span>
+                            </div>
+                            <p class="song_duration time"></p>
+                        </div>
+                        <div class="song_controller_container">
+                            <div class="cur_left_song_icon con_arrow left_arrow">
+                                <i class="ri-skip-left-fill"></i>
+                            </div>
+                            <div class="cur_play_and_pause_btn_icon">
+                                <i class="ri-play-fill play play_btn"></i>
+                                <i class="ri-pause-mini-line pause pause_btn"></i>
+                            </div>
+                            <div class="cur_right_song_icon con_arrow right_arrow">
+                                <i class="ri-skip-right-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- jquery link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="/assets/js/script.js"></script>
 </body>
-<!-- <body>
-    <audio controls id="myAudio" src="/assets/audio/Akhiyaan Gulaab Audio Shahid Kapoor Kriti Sanon  Mitraz  Teri Baaton Mein Aisa Uljha Jiya.mp3" onloadedmetadata="audioLoaded()">
-        Your browser does not support the audio element.
-      </audio>
-      
-      <script>
-      function audioLoaded() {
-        var audio = document.getElementById("myAudio");
-        console.log("Audio duration:", audio.duration);
-        // Perform other actions...
-      }
-      </script>
-</body> -->
-<!-- <body>
 
-<audio id="myAudio" controls>
-    <source src="audio/Dunki Drop 5  O Maahi Song Shah Rukh Khan  Taapsee Pannu  Pritam  Arijit Singh  Irshad Kamil  YouTube.mp3" type="audio/mpeg">
-</audio>
-
-<p id="audioName">Song Name</p>
-
-<script>
-    
-        const audio = document.getElementById('myAudio');
-        const audioSrc = audio.getElementsByTagName('source')[0].src;
-        const audioName = decodeURIComponent(audioSrc.split('/').pop()); // Decode URL-encoded characters
-        const pTag = document.getElementById('audioName');
-        pTag.textContent = audioName; // Set the text content of the <p> tag to the audio file name
-    
-</script>
-
-</body> -->
 </html>
