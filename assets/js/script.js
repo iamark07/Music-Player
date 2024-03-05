@@ -117,7 +117,6 @@ $(document).ready(() => {
         $(".cd_player img").removeClass("play_cd");
     }
 
-
     // popup play and puase btn show and hide and current song play and puase btn show and hide
     $(".play_btn").click((pop_play) => {
         pop_play.stopPropagation(); // this is use for when i click on play btn then popup music page is not open 
@@ -145,23 +144,28 @@ $(document).ready(() => {
 
     // song duration and current time show 
     function music_duration() {
-
         let song_duration = $(".song_duration");
         let cur_song_time = $(".current_song_list .song_name .audio")[0];
-        $(cur_song_time).each(function () {
-
-            var duration = this.duration;
+    
+        // Check if the audio is loaded
+        if (cur_song_time.readyState >= 2) {
+            setDuration();
+        } else {
+            // If not loaded, wait for the 'loadedmetadata' event
+            $(cur_song_time).on('loadedmetadata', function () {
+                setDuration();
+            });
+        }
+    
+        function setDuration() {
+            var duration = cur_song_time.duration;
             var minutes = Math.floor(duration / 60);
             var seconds = Math.floor(duration % 60);
             var durationString = (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
-            $(song_duration).text(durationString);
-            // console.log(this.duration);
-        });
-        cur_song_time.onloadedmetadata = function () {
-            music_duration();
+            song_duration.text(durationString);
         }
+    }    
 
-    }
     music_duration();
 
     function updateCurrentTime() {
@@ -282,7 +286,7 @@ $(document).ready(() => {
                 stop_music_action();
                 music_duration();
             }
-            else{
+            else {
                 let next_cur_song = $(".current_song_list .song_name .audio")[0]; // select current song
 
                 $(".audio").each(function () {
