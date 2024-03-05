@@ -69,6 +69,7 @@ $(document).ready(() => {
             updateCurrentTime();
             music_duration();
             progress();
+            progress_play();
             progress_bar_point();
             song_end();
 
@@ -131,6 +132,7 @@ $(document).ready(() => {
         play_cur_song = $(".current_song_list .song_name .audio")[0];
         play_cur_song.play();
         progress();
+        progress_play();
 
     });
     $(".pause_btn").click((pop_pause) => {
@@ -158,6 +160,7 @@ $(document).ready(() => {
         cur_song_time.onloadedmetadata = function () {
             music_duration();
         }
+
     }
     music_duration();
 
@@ -206,6 +209,18 @@ $(document).ready(() => {
     }
     progress();
 
+    function progress_play() {
+        let cur_progress_audio = $(".current_song_list .song_name .audio")[0];
+        let pro_play = $(".progress_play");
+
+        $(cur_progress_audio).on('timeupdate', function () {
+            let percentage = (cur_progress_audio.currentTime / cur_progress_audio.duration) * 100;
+            pro_play.css("width", percentage + "%");
+        });
+    }
+    progress_play();
+
+
     // stop click event on progress becuase it's efect of is left style value
 
     $(".progress").click((eve) => {
@@ -235,35 +250,39 @@ $(document).ready(() => {
     }
     progress_bar_point();
 
-
     function song_end() {
         // when song ended 
-
         cur_audio = $(".current_song_list .song_name .audio")[0];
         $(cur_audio).on('ended', function () {
 
             $(".current_song_list").addClass("stop_song"); // add class stop_song in current_song_list 
             removeSongClass(); // remove all current_song_list class 
             let next = $(".stop_song").next(); // select next sibling of stop_song class
-            $(next).addClass("current_song_list"); // then add current_song_list class in next sibling element 
+            $(next).addClass("current_song_list"); // then add current_song_list class in next sibling element
+
+            let prev = $(".current_song_list").prev(); // select current_song_list previous song
+            prev.removeClass("stop_song"); // remove stop_song class on current_song_list privious song
+
+            // Add check for next_cur_song
 
             if ($(".song:last").hasClass("stop_song")) { // check if last song have class stop_song name then 
                 $(".song:last").removeClass("stop_song"); // remove stop_song from last song
                 $(".song:first").addClass("current_song_list"); // add current_song_list class on first song
                 $(".current_song_time").text("00:00");
                 $(".progress").css("left", "0%");
+                $(".progress_play").css("width", "0%");
                 let pop_song_name = $(".current_song_list .song_name .audio_name").text(); // pop up song name select
                 $(".pop_cur_song_name").text(pop_song_name); // copy to popup current song
                 let cur_song_name = $(".pop_cur_song_name").text(); //  select current popup song
                 $(".cur_song_name").text(cur_song_name); // copy to popup song name
+                let pauselast = $(".current_song_list .song_name .audio")[0];
+                pauselast.pause();
                 delWaveIcon();// delete music wave gif img
                 creat_wave_icon();// add music wave gif img
                 stop_music_action();
-                
+                music_duration();
             }
-            else {
-                let prev = $(".current_song_list").prev(); // select current_song_list previous song
-                prev.removeClass("stop_song"); // remove stop_song class on current_song_list privious song
+            else{
                 let next_cur_song = $(".current_song_list .song_name .audio")[0]; // select current song
 
                 $(".audio").each(function () {
@@ -279,16 +298,75 @@ $(document).ready(() => {
                 $(".cur_song_name").text(cur_song_name); // copy to popup song name
                 delWaveIcon();// delete music wave gif img
                 creat_wave_icon();// add music wave gif img
-                song_end();
                 updateCurrentTime();
                 music_duration(); // music duration show
                 play_music_action(); // other music action cd animation play pause btn show hide
                 progress(); // progess moving automatic with the song duration 
+                progress_play();
                 progress_bar_point(); // on progress bar where click song playing there
+                // pause_last(); // last song pause
             }
-
+            song_end();
+            progress_bar_point();
         });
     }
+    song_end();
+
+    // function song_end() {
+    //     // when song ended 
+
+    //     cur_audio = $(".current_song_list .song_name .audio")[0];
+    //     $(cur_audio).on('ended', function () {
+
+    //         $(".current_song_list").addClass("stop_song"); // add class stop_song in current_song_list 
+    //         removeSongClass(); // remove all current_song_list class 
+    //         let next = $(".stop_song").next(); // select next sibling of stop_song class
+    //         $(next).addClass("current_song_list"); // then add current_song_list class in next sibling element
+
+    //         let prev = $(".current_song_list").prev(); // select current_song_list previous song
+    //         prev.removeClass("stop_song"); // remove stop_song class on current_song_list privious song
+    //         let next_cur_song = $(".current_song_list .song_name .audio")[0]; // select current song
+
+    //         $(".audio").each(function () {
+    //             if (!this.paused) { // check which song who am i select is play then
+    //                 this.pause(); // current song paused
+    //                 this.currentTime = 0; //and set song current time to 0
+    //             }
+    //         });
+    //         next_cur_song.play(); // current song play
+    //         let pop_song_name = $(".current_song_list .song_name .audio_name").text(); // pop up song name select
+    //         $(".pop_cur_song_name").text(pop_song_name); // copy to popup current song
+    //         let cur_song_name = $(".pop_cur_song_name").text(); //  select current popup song
+    //         $(".cur_song_name").text(cur_song_name); // copy to popup song name
+    //         delWaveIcon();// delete music wave gif img
+    //         creat_wave_icon();// add music wave gif img
+    //         updateCurrentTime();
+    //         music_duration(); // music duration show
+    //         play_music_action(); // other music action cd animation play pause btn show hide
+    //         progress(); // progess moving automatic with the song duration 
+    //         progress_play();
+    //         progress_bar_point(); // on progress bar where click song playing there
+
+    //         if ($(".song:last").hasClass("stop_song")) { // check if last song have class stop_song name then 
+    //             $(".song:last").removeClass("stop_song"); // remove stop_song from last song
+    //             $(".song:first").addClass("current_song_list"); // add current_song_list class on first song
+    //             $(".current_song_time").text("00:00");
+    //             $(".progress").css("left", "0%");
+    //             $(".progress_play").css("width", "0%");
+    //             let pop_song_name = $(".current_song_list .song_name .audio_name").text(); // pop up song name select
+    //             $(".pop_cur_song_name").text(pop_song_name); // copy to popup current song
+    //             let cur_song_name = $(".pop_cur_song_name").text(); //  select current popup song
+    //             $(".cur_song_name").text(cur_song_name); // copy to popup song name
+    //             delWaveIcon();// delete music wave gif img
+    //             creat_wave_icon();// add music wave gif img
+    //             stop_music_action();
+    //             console.log("end");
+    //         }
+    //         song_end();
+
+
+    //     });
+    // }
 
     // song_end();
 
@@ -330,6 +408,7 @@ $(document).ready(() => {
         music_duration(); // music duration show
         play_music_action(); // other music action cd animation play pause btn show hide
         progress(); // progess moving automatic with the song duration 
+        progress_play();
         progress_bar_point(); // on progress bar where click song playing there
     })
 
@@ -368,6 +447,7 @@ $(document).ready(() => {
         music_duration(); //music curation show
         play_music_action();// other music action cd animation play pause btn show hide
         progress();// progess moving automatic with the song duration 
+        progress_play();
         progress_bar_point()// on progress bar where click song playing there
     });
 });

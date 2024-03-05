@@ -412,6 +412,7 @@ main {
     height: 5px;
     background-color: white;
     border-radius: 10px;
+    /* width: 20%; */
 }
 
 .song_controller_container{
