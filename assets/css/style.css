@@ -332,6 +332,8 @@ main {
     border-radius: 50%;
     animation: cd_player 3s linear infinite;
     animation-play-state: paused;
+    background-color: rgba(255, 255, 255, 0.23);
+    padding: 20px;
 }
 
 .play_cd{
@@ -388,7 +390,7 @@ main {
     width: 68%;
     height: 5px;
     border-radius: 10px;
-    background-color: rgba(226, 226, 226, 0.5);
+    background-color: rgba(255, 255, 255, 0.23);
     position: relative;
     cursor: pointer;
 }
@@ -433,7 +435,7 @@ main {
 }
 
 .con_arrow{
-    background-color: rgba(231, 231, 231, 0.395);
+    background-color: rgba(255, 255, 255, 0.23);
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -442,7 +444,7 @@ main {
 }
 
 .cur_play_and_pause_btn_icon{
-    background-color: rgba(231, 231, 231, 0.395);
+    background-color: rgba(255, 255, 255, 0.23);
     width: 80px;
     height: 80px;
     border-radius: 50%;
